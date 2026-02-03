@@ -1,0 +1,481 @@
+Initialized native services in: /Users/Giorgi_Shalvashvili/.gradle/native
+Initialized jansi services in: /Users/Giorgi_Shalvashvili/.gradle/native
+Welcome to Gradle 9.0.0!
+Here are the highlights of this release:
+ - Configuration Cache is the recommended execution mode
+ - Gradle requires JVM 17 or higher to run
+ - Build scripts use Kotlin 2.2 and Groovy 4.0
+ - Improved Kotlin DSL script compilation avoidance
+For more details see https://docs.gradle.org/9.0.0/release-notes.html
+Found daemon DaemonInfo{pid=23228, address=[712d3df8-39e2-4ae7-ac0f-7fa8da88fff1 port:59167, addresses:[/127.0.0.1]], state=Idle, lastBusy=1770118989423, context=DefaultDaemonContext[uid=592ffc60-ee89-4fc2-ab1b-bcb002951dbc,javaHome=/Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-17.0.14/Contents/Home,javaVersion=17,javaVendor=JetBrains s.r.o.,daemonRegistryDir=/Users/Giorgi_Shalvashvili/.gradle/daemon,pid=23228,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=GE,-Duser.language=en,-Duser.variant]} however its context does not match the desired criteria.
+JVM is incompatible.
+Wanted: DaemonRequestContext{jvmCriteria=/Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-21.0.5/Contents/Home (no JDK specified, using current Java home), daemonOpts=[-XX:MaxMetaspaceSize=384m, -XX:+HeapDumpOnOutOfMemoryError, -Xms256m, -Xmx512m, -Dfile.encoding=UTF-8, -Duser.country=GE, -Duser.language=en, -Duser.variant], applyInstrumentationAgent=true, nativeServicesMode=ENABLED, priority=NORMAL}
+Actual: DefaultDaemonContext[uid=592ffc60-ee89-4fc2-ab1b-bcb002951dbc,javaHome=/Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-17.0.14/Contents/Home,javaVersion=17,javaVendor=JetBrains s.r.o.,daemonRegistryDir=/Users/Giorgi_Shalvashvili/.gradle/daemon,pid=23228,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=GE,-Duser.language=en,-Duser.variant]
+  Looking for a different daemon...
+Removing 0 daemon stop events from registry
+Starting a Gradle Daemon, 1 incompatible Daemon could not be reused, use --status for details
+Starting process 'Gradle build daemon'. Working directory: /Users/Giorgi_Shalvashvili/.gradle/daemon/9.0.0 Command: /Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-21.0.5/Contents/Home/bin/java --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED -XX:MaxMetaspaceSize=384m -XX:+HeapDumpOnOutOfMemoryError -Xms256m -Xmx512m -Dfile.encoding=UTF-8 -Duser.country=GE -Duser.language=en -Duser.variant -cp /Users/Giorgi_Shalvashvili/.gradle/wrapper/dists/gradle-9.0.0-bin/d6wjpkvcgsg3oed0qlfss3wgl/gradle-9.0.0/lib/gradle-daemon-main-9.0.0.jar -javaagent:/Users/Giorgi_Shalvashvili/.gradle/wrapper/dists/gradle-9.0.0-bin/d6wjpkvcgsg3oed0qlfss3wgl/gradle-9.0.0/lib/agents/gradle-instrumentation-agent-9.0.0.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.0.0
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 0.716 secs.
+The client will now receive all logging from the daemon (pid: 23969). The daemon log file: /Users/Giorgi_Shalvashvili/.gradle/daemon/9.0.0/daemon-23969.out.log
+Starting build in new daemon [memory: 512 MiB]
+Using 8 worker leases.
+Received JVM installation metadata from '/Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-21.0.5/Contents/Home': {JAVA_HOME=/Users/Giorgi_Shalvashvili/Library/Java/JavaVirtualMachines/jbr-21.0.5/Contents/Home, JAVA_VERSION=21.0.5, JAVA_VENDOR=JetBrains s.r.o., RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=21.0.5+8-b792.48, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=21.0.5+8-b792.48, VM_VENDOR=JetBrains s.r.o., OS_ARCH=aarch64}
+Watching the file system is configured to be enabled if available
+Now considering [/Users/Giorgi_Shalvashvili/IdeaProjects/untitled] as hierarchies to watch
+File system watching is active
+Starting Build
+Caching disabled for Kotlin DSL script compilation (Settings/TopLevel/stage1) because:
+  Build cache is disabled
+Resolved plugin [id: 'org.gradle.toolchains.foojay-resolver-convention', version: '1.0.0']
+Caching disabled for Kotlin DSL script compilation (Settings/TopLevel/stage2) because:
+  Build cache is disabled
+Settings evaluated using settings file '/Users/Giorgi_Shalvashvili/IdeaProjects/untitled/settings.gradle.kts'.
+Projects loaded. Root project using build file '/Users/Giorgi_Shalvashvili/IdeaProjects/untitled/build.gradle.kts'.
+Included projects: [root project 'untitled']
+> Configure project :
+Evaluating root project 'untitled' using build file '/Users/Giorgi_Shalvashvili/IdeaProjects/untitled/build.gradle.kts'.
+Caching disabled for Kotlin DSL script compilation (Project/TopLevel/stage1) because:
+  Build cache is disabled
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/multiplatform/org.jetbrains.kotlin.multiplatform.gradle.plugin/2.1.0/org.jetbrains.kotlin.multiplatform.gradle.plugin-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download3505213203855655934bin
+Resource missing. [HTTP HEAD: https://plugins.gradle.org/m2/org/jetbrains/kotlin/multiplatform/org.jetbrains.kotlin.multiplatform.gradle.plugin/2.1.0/org.jetbrains.kotlin.multiplatform.gradle.plugin-2.1.0.jar]
+Resolved plugin [id: 'org.jetbrains.kotlin.multiplatform', version: '2.1.0']
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin/2.1.0/kotlin-gradle-plugin-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download3695148458563511849bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugins-bom/2.1.0/kotlin-gradle-plugins-bom-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download12481568528290330893bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugins-bom/2.1.0/kotlin-gradle-plugins-bom-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download4695093799182291007bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin/2.1.0/kotlin-gradle-plugin-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download3057519598396186530bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-model/2.1.0/kotlin-gradle-plugin-model-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download17357690840010030108bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-klib-metadata/2.1.0/kotlin-util-klib-metadata-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download10060531499360655844bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-klib-commonizer-api/2.1.0/kotlin-klib-commonizer-api-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download2104876770642692732bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-compiler-runner/2.1.0/kotlin-compiler-runner-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download4552150265113086004bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-build-statistics/2.1.0/kotlin-build-statistics-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download5765398607166797942bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/kotlin-gradle-plugin-idea-proto-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download235699473597660535bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-api/2.1.0/kotlin-gradle-plugin-api-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download2683828133884334482bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-api/2.1.0/kotlin-gradle-plugin-api-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download6309936217487341503bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-model/2.1.0/kotlin-gradle-plugin-model-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download5452151992066198346bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-idea/2.1.0/kotlin-gradle-plugin-idea-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download7203178981422184955bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-idea/2.1.0/kotlin-gradle-plugin-idea-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download1502172386073419456bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-annotations/2.1.0/kotlin-gradle-plugin-annotations-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download7371890243215077211bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-tooling-core/2.1.0/kotlin-tooling-core-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download14569812860422664390bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-native-utils/2.1.0/kotlin-native-utils-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download11099151633527509784bin
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/com/google/code/gson/gson/2.8.9/gson-2.8.9.pom, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/e40b03e4cc2b52efb19af75c07596e9d15a52d82/gson-2.8.9.pom]
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-build-tools-api/2.1.0/kotlin-build-tools-api-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download1483129504947618294bin
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/com/google/code/gson/gson-parent/2.8.9/gson-parent-2.8.9.pom, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson-parent/2.8.9/c3fdad2fa3239f928ad9c77a9f9c9379f6bde7a/gson-parent-2.8.9.pom]
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-io/2.1.0/kotlin-util-io-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download5167355972512193884bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-klib/2.1.0/kotlin-util-klib-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download17062723817799868759bin
+Downloading https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-daemon-client/2.1.0/kotlin-daemon-client-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download3286058546964132989bin
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-api/2.1.0/kotlin-gradle-plugin-api-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.1.0/3d61c5c520b7e6f562d78b16f7b64c2608088ae7/kotlin-gradle-plugin-api-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-klib-metadata/2.1.0/kotlin-util-klib-metadata-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib-metadata/2.1.0/c0f515d35d514c0689afd56c0bd3b35cdb64d1d/kotlin-util-klib-metadata-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/kotlin-gradle-plugin-idea-proto-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/66ae2c0c68fdb6dd8b7ee09b1599153fc6c2ab93/kotlin-gradle-plugin-idea-proto-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-klib-commonizer-api/2.1.0/kotlin-klib-commonizer-api-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-klib-commonizer-api/2.1.0/fdd21b2515a824ef7937111dad250f0756482f64/kotlin-klib-commonizer-api-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-idea/2.1.0/kotlin-gradle-plugin-idea-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea/2.1.0/68dc62267176b4484dcc63973f5887eca4d5ff86/kotlin-gradle-plugin-idea-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-annotations/2.1.0/kotlin-gradle-plugin-annotations-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations/2.1.0/9b36b3d02a0937d7d5c867a2273b016213131980/kotlin-gradle-plugin-annotations-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-tooling-core/2.1.0/kotlin-tooling-core-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-tooling-core/2.1.0/9055094879c715b1c39945150156f2e876ae7438/kotlin-tooling-core-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-build-statistics/2.1.0/kotlin-build-statistics-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-statistics/2.1.0/fb2159d08af2b785a8bed3b6102dc81a00f469fc/kotlin-build-statistics-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-compiler-runner/2.1.0/kotlin-compiler-runner-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-runner/2.1.0/aeff856eff94e2ca0582f155b414a57cc7837e07/kotlin-compiler-runner-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-native-utils/2.1.0/kotlin-native-utils-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/2.1.0/c6a595c651eb234dd66ac91ca045c52622ac80d6/kotlin-native-utils-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin-model/2.1.0/kotlin-gradle-plugin-model-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/2.1.0/26371147deb7b95e33bee53f3be7354af6c4fe7c/kotlin-gradle-plugin-model-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/com/google/code/gson/gson/2.8.9/gson-2.8.9.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.6.4/kotlinx-coroutines-core-jvm-1.6.4.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-build-tools-api/2.1.0/kotlin-build-tools-api-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-tools-api/2.1.0/e6c176cdaeb5ce3751c120eb1dfd84e5cc64d369/kotlin-build-tools-api-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-klib/2.1.0/kotlin-util-klib-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib/2.1.0/58c52d1b79cb994b8679cd4b20770e8b48d2e550/kotlin-util-klib-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-daemon-client/2.1.0/kotlin-daemon-client-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/2.1.0/2c219a5026f6c4c1188b40cb3b6bb557f16182b7/kotlin-daemon-client-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-util-io/2.1.0/kotlin-util-io-2.1.0.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/2.1.0/839c53030115a83c56ce47e0fc0c4a39c001e0c3/kotlin-util-io-2.1.0.jar]
+Found locally available resource with matching checksum: [https://plugins.gradle.org/m2/org/jetbrains/kotlin/kotlin-gradle-plugin/2.1.0/kotlin-gradle-plugin-2.1.0-gradle85.jar, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/2.1.0/43b225a353673533d9b523667983ee0276baf947/kotlin-gradle-plugin-2.1.0-gradle85.jar]
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/2.1.0/26371147deb7b95e33bee53f3be7354af6c4fe7c/kotlin-gradle-plugin-model-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.1.0/3d61c5c520b7e6f562d78b16f7b64c2608088ae7/kotlin-gradle-plugin-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/2.1.0/43b225a353673533d9b523667983ee0276baf947/kotlin-gradle-plugin-2.1.0-gradle85.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/66ae2c0c68fdb6dd8b7ee09b1599153fc6c2ab93/kotlin-gradle-plugin-idea-proto-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea/2.1.0/68dc62267176b4484dcc63973f5887eca4d5ff86/kotlin-gradle-plugin-idea-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-klib-commonizer-api/2.1.0/fdd21b2515a824ef7937111dad250f0756482f64/kotlin-klib-commonizer-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-statistics/2.1.0/fb2159d08af2b785a8bed3b6102dc81a00f469fc/kotlin-build-statistics-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib-metadata/2.1.0/c0f515d35d514c0689afd56c0bd3b35cdb64d1d/kotlin-util-klib-metadata-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-runner/2.1.0/aeff856eff94e2ca0582f155b414a57cc7837e07/kotlin-compiler-runner-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations/2.1.0/9b36b3d02a0937d7d5c867a2273b016213131980/kotlin-gradle-plugin-annotations-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/2.1.0/c6a595c651eb234dd66ac91ca045c52622ac80d6/kotlin-native-utils-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-tooling-core/2.1.0/9055094879c715b1c39945150156f2e876ae7438/kotlin-tooling-core-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-tools-api/2.1.0/e6c176cdaeb5ce3751c120eb1dfd84e5cc64d369/kotlin-build-tools-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib/2.1.0/58c52d1b79cb994b8679cd4b20770e8b48d2e550/kotlin-util-klib-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/2.1.0/839c53030115a83c56ce47e0fc0c4a39c001e0c3/kotlin-util-io-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/2.1.0/2c219a5026f6c4c1188b40cb3b6bb557f16182b7/kotlin-daemon-client-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for InstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/99b822877a24dd32b8b24b2af97f9354/transformed/.gradle-instrumented-classpath.marker because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/c138132cde8a30a591d4b679bef3b753/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/99b822877a24dd32b8b24b2af97f9354/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/e29129eb6ab256121a9a1876f184d2ba/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/804ef7bc33da1ce1a54caa5f650a12ad/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/aeaacfa49396f4477c586a0c532eb432/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/29d113e354f84ca2829f8153d571f845/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/9a7f4ffe713265be43e00f8dba557a88/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/7060e0796d4268f25fe37ecb163b8c89/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/99b822877a24dd32b8b24b2af97f9354/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/c138132cde8a30a591d4b679bef3b753/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/29d113e354f84ca2829f8153d571f845/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/804ef7bc33da1ce1a54caa5f650a12ad/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/e29129eb6ab256121a9a1876f184d2ba/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/9a7f4ffe713265be43e00f8dba557a88/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/aeaacfa49396f4477c586a0c532eb432/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/7060e0796d4268f25fe37ecb163b8c89/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/2.1.0/26371147deb7b95e33bee53f3be7354af6c4fe7c/kotlin-gradle-plugin-model-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib-metadata/2.1.0/c0f515d35d514c0689afd56c0bd3b35cdb64d1d/kotlin-util-klib-metadata-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-klib-commonizer-api/2.1.0/fdd21b2515a824ef7937111dad250f0756482f64/kotlin-klib-commonizer-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-statistics/2.1.0/fb2159d08af2b785a8bed3b6102dc81a00f469fc/kotlin-build-statistics-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea/2.1.0/68dc62267176b4484dcc63973f5887eca4d5ff86/kotlin-gradle-plugin-idea-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/66ae2c0c68fdb6dd8b7ee09b1599153fc6c2ab93/kotlin-gradle-plugin-idea-proto-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.1.0/3d61c5c520b7e6f562d78b16f7b64c2608088ae7/kotlin-gradle-plugin-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/c3d1ef5c4304159e8c171031efb6ef68/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/01819690d5c944f756a6424a041c0ebd/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/511850ee0a39c5921027d7863f18ebd8/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/076fbc6f9bf5214fa9b09ca708c5b0f9/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/0b7766768bb0bb11ac6f5f9078d6619d/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/aacb65597afe220e382a8f14651c3b1f/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/c2505b8b7512dbf3cde1780854892309/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-model/2.1.0/26371147deb7b95e33bee53f3be7354af6c4fe7c/kotlin-gradle-plugin-model-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/44bab8b30ece824f35956cfd287896ee/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/44bab8b30ece824f35956cfd287896ee/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea/2.1.0/68dc62267176b4484dcc63973f5887eca4d5ff86/kotlin-gradle-plugin-idea-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-klib-commonizer-api/2.1.0/fdd21b2515a824ef7937111dad250f0756482f64/kotlin-klib-commonizer-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/2.1.0/43b225a353673533d9b523667983ee0276baf947/kotlin-gradle-plugin-2.1.0-gradle85.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/b2175d6a4da1d7f090ee7090a4cb0989/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/6e8b3e8241497c37af55bed98cc899cf/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-runner/2.1.0/aeff856eff94e2ca0582f155b414a57cc7837e07/kotlin-compiler-runner-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/f24fc53a25cdaf2c6b6055b0d9ec6666/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/6e8b3e8241497c37af55bed98cc899cf/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations/2.1.0/9b36b3d02a0937d7d5c867a2273b016213131980/kotlin-gradle-plugin-annotations-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib-metadata/2.1.0/c0f515d35d514c0689afd56c0bd3b35cdb64d1d/kotlin-util-klib-metadata-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-statistics/2.1.0/fb2159d08af2b785a8bed3b6102dc81a00f469fc/kotlin-build-statistics-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/c52e4e3761fa6e608cf4a932670c6022/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/2.1.0/c6a595c651eb234dd66ac91ca045c52622ac80d6/kotlin-native-utils-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/ebe4d087086f34720f063a4a287104b4/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/3ddfb8cf60380f07d107cf90d027bd6a/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/b9d3d5cfcfdf05414110a6aab73e7d41/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/1a8cb71c8f46a16dd13b2e44c452c2ef/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-annotations/2.1.0/9b36b3d02a0937d7d5c867a2273b016213131980/kotlin-gradle-plugin-annotations-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/b9d3d5cfcfdf05414110a6aab73e7d41/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-compiler-runner/2.1.0/aeff856eff94e2ca0582f155b414a57cc7837e07/kotlin-compiler-runner-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/1a8cb71c8f46a16dd13b2e44c452c2ef/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/237746e5793bed7b6c8905020cfb1a21/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/10b3a540a68255d175c4da4a36b31b30/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-tooling-core/2.1.0/9055094879c715b1c39945150156f2e876ae7438/kotlin-tooling-core-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/10b3a540a68255d175c4da4a36b31b30/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/237746e5793bed7b6c8905020cfb1a21/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/25b61e511ac2a89511b14131488e0196/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-tools-api/2.1.0/e6c176cdaeb5ce3751c120eb1dfd84e5cc64d369/kotlin-build-tools-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib/2.1.0/58c52d1b79cb994b8679cd4b20770e8b48d2e550/kotlin-util-klib-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-api/2.1.0/3d61c5c520b7e6f562d78b16f7b64c2608088ae7/kotlin-gradle-plugin-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/02a4d16c5759f566e1a058214bd5a667/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/b56a6c8459d068e64a6cb9bddc933413/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/8bd90fb735ebbeae44df61aa94b730d4/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/d4bdf7502f7d58df9a114a2f4512d3a9/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/8bd90fb735ebbeae44df61aa94b730d4/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/2.1.0/839c53030115a83c56ce47e0fc0c4a39c001e0c3/kotlin-util-io-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-build-tools-api/2.1.0/e6c176cdaeb5ce3751c120eb1dfd84e5cc64d369/kotlin-build-tools-api-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/5187734af4383a08937ba5ef6a18eb1e/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-tooling-core/2.1.0/9055094879c715b1c39945150156f2e876ae7438/kotlin-tooling-core-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/0500c247348457e08be719f565f291c1/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/ad83aff05d9499c69fa3b2c64e1ff62e/transformed/analysis/instrumentation-hierarchy.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/ad83aff05d9499c69fa3b2c64e1ff62e/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/0500c247348457e08be719f565f291c1/transformed/analysis/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/2.1.0/2c219a5026f6c4c1188b40cb3b6bb557f16182b7/kotlin-daemon-client-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for MergeInstrumentationAnalysisTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/437f9b073f9349efcae84a6fd1a6654d/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/9.0.0/transforms/70ca7e443189452d2c1551c2c87542bd/transformed/merge/instrumentation-dependencies.bin because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-io/2.1.0/839c53030115a83c56ce47e0fc0c4a39c001e0c3/kotlin-util-io-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-native-utils/2.1.0/c6a595c651eb234dd66ac91ca045c52622ac80d6/kotlin-native-utils-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.9/8a432c1d6825781e21a02db2e2c33c5fde2833b9/gson-2.8.9.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-daemon-client/2.1.0/2c219a5026f6c4c1188b40cb3b6bb557f16182b7/kotlin-daemon-client-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-util-klib/2.1.0/58c52d1b79cb994b8679cd4b20770e8b48d2e550/kotlin-util-klib-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin-idea-proto/2.1.0/66ae2c0c68fdb6dd8b7ee09b1599153fc6c2ab93/kotlin-gradle-plugin-idea-proto-2.1.0.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Caching disabled for ExternalDependencyInstrumentingArtifactTransform: /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-gradle-plugin/2.1.0/43b225a353673533d9b523667983ee0276baf947/kotlin-gradle-plugin-2.1.0-gradle85.jar because:
+  Build cache is disabled
+  Caching not enabled.
+Using Kotlin Gradle Plugin gradle85 variant
+Caching disabled for Kotlin DSL accessors for root project 'untitled' because:
+  Build cache is disabled
+Caching disabled for Kotlin DSL script compilation (Project/TopLevel/stage2) because:
+  Build cache is disabled
+[KOTLIN] Storing cached files in /Users/Giorgi_Shalvashvili/.gradle
+[KOTLIN] Storing cached files in /Users/Giorgi_Shalvashvili/.gradle
+[KOTLIN] Storing cached files in /Users/Giorgi_Shalvashvili/.gradle
+All projects evaluated.
+Task name matched 'jsBrowserDevelopmentRun'
+Selected primary task 'jsBrowserDevelopmentRun' from project :
+Starting process 'command 'uname''. Working directory: /Users/Giorgi_Shalvashvili/IdeaProjects/untitled Command: uname -m
+Successfully started process 'command 'uname''
+Found locally available resource with matching checksum: [https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.pom, /Users/Giorgi_Shalvashvili/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/2.1.0/b7c581edbfc43221bf7a18ea76cc482111bba949/kotlin-stdlib-2.1.0.pom]
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/2.1.0/kotlin-stdlib-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download4158526137676275214bin
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-dom-api-compat/2.1.0/kotlin-dom-api-compat-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download17846362599164591287bin
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-browser/0.3/kotlinx-browser-0.3.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download6546582813839044738bin
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-browser/0.3/kotlinx-browser-0.3.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download10374576443912516880bin
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-dom-api-compat/2.1.0/kotlin-dom-api-compat-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download12097576337625515812bin
+Variant Selection Exception: org.gradle.internal.component.resolution.failure.exception.VariantSelectionByAttributesException caused by Resolution Failure: org.gradle.internal.component.resolution.failure.type.NoCompatibleVariantsFailure
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-js/2.1.0/kotlin-stdlib-js-2.1.0.pom to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download8059756689194011837bin
+Downloading https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-js/2.1.0/kotlin-stdlib-js-2.1.0.module to /Users/Giorgi_Shalvashvili/.gradle/.tmp/gradle_download5486956572213922885bin
+[Incubating] Problems report is available at: file:///Users/Giorgi_Shalvashvili/IdeaProjects/untitled/build/reports/problems/problems-report.html
+FAILURE: Build failed with an exception.
+* What went wrong:
+Could not determine the dependencies of task ':kotlinNpmInstall'.
+> Could not resolve all dependencies for configuration ':jsNpmAggregated'.
+   > Could not resolve org.jetbrains.kotlinx:kotlinx-browser:0.3.
+     Required by:
+         root project 'untitled'
+      > No matching variant of org.jetbrains.kotlinx:kotlinx-browser:0.3 was found. The consumer was configured to find a library for use during 'kotlin-runtime', preferably optimized for non-jvm, as well as attribute 'org.jetbrains.kotlin.js.compiler' with value 'ir', attribute 'org.jetbrains.kotlin.js.public.package.json' with value 'public-package-json', attribute 'org.jetbrains.kotlin.platform.type' with value 'js' but:
+          - Variant 'metadataApiElements' declares a library:
+              - Incompatible because this component declares a component for use during 'kotlin-metadata', as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'common' and the consumer needed a component for use during 'kotlin-runtime', as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'js'
+              - Other compatible attributes:
+                  - Doesn't say anything about its target Java environment (preferred optimized for non-jvm)
+                  - Doesn't say anything about org.jetbrains.kotlin.js.compiler (required 'ir')
+                  - Doesn't say anything about org.jetbrains.kotlin.js.public.package.json (required 'public-package-json')
+          - Variant 'metadataSourcesElements' declares a component for use during 'kotlin-runtime':
+              - Incompatible because this component declares documentation, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'common' and the consumer needed a library, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'js'
+              - Other compatible attributes:
+                  - Doesn't say anything about its target Java environment (preferred optimized for non-jvm)
+                  - Doesn't say anything about org.jetbrains.kotlin.js.compiler (required 'ir')
+                  - Doesn't say anything about org.jetbrains.kotlin.js.public.package.json (required 'public-package-json')
+          - Variant 'wasmJsApiElements-published' declares a library:
+              - Incompatible because this component declares a component for use during 'kotlin-api', as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'wasm' and the consumer needed a component for use during 'kotlin-runtime', as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'js'
+              - Other compatible attributes:
+                  - Doesn't say anything about its target Java environment (preferred optimized for non-jvm)
+                  - Doesn't say anything about org.jetbrains.kotlin.js.compiler (required 'ir')
+                  - Doesn't say anything about org.jetbrains.kotlin.js.public.package.json (required 'public-package-json')
+          - Variant 'wasmJsRuntimeElements-published' declares a library for use during 'kotlin-runtime':
+              - Incompatible because this component declares a component, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'wasm' and the consumer needed a component, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'js'
+              - Other compatible attributes:
+                  - Doesn't say anything about its target Java environment (preferred optimized for non-jvm)
+                  - Doesn't say anything about org.jetbrains.kotlin.js.compiler (required 'ir')
+                  - Doesn't say anything about org.jetbrains.kotlin.js.public.package.json (required 'public-package-json')
+          - Variant 'wasmJsSourcesElements-published' declares a component for use during 'kotlin-runtime':
+              - Incompatible because this component declares documentation, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'wasm' and the consumer needed a library, as well as attribute 'org.jetbrains.kotlin.platform.type' with value 'js'
+              - Other compatible attributes:
+                  - Doesn't say anything about its target Java environment (preferred optimized for non-jvm)
+                  - Doesn't say anything about org.jetbrains.kotlin.js.compiler (required 'ir')
+                  - Doesn't say anything about org.jetbrains.kotlin.js.public.package.json (required 'public-package-json')
+* Try:
+> No matching variant errors are explained in more detail at https://docs.gradle.org/9.0.0/userguide/variant_model.html#sub:variant-no-match.
+> Review the variant matching algorithm at https://docs.gradle.org/9.0.0/userguide/variant_attributes.html#sec:abm_algorithm.
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+For more on this, please refer to https://docs.gradle.org/9.0.0/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+BUILD FAILED in 19s
+Watched directory hierarchies: []
