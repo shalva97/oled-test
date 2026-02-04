@@ -7,6 +7,23 @@ import org.w3c.dom.HTMLInputElement
 import org.w3c.dom.HTMLLabelElement
 import kotlin.math.roundToInt
 
+/*
+    OLED Test App — Main entry
+
+    Notes for future maintainers (Kotlin/JS specifics):
+    - We intentionally avoid Kotlin stdlib collections and regex in hot paths because some
+      runtimes mangle iterator/size/regex methods, causing "is not a function" crashes.
+    - Wherever mutation or array length is needed, we store colors as a native JS array
+      (via js("[]") or js("['#000', ...]")) and use .length/push/splice through dynamic.
+    - Keep loops index-based and prefer primitive operations over high-level helpers to
+      maximize runtime stability across bundlers and browsers.
+
+    UX overview:
+    - Centered color picker (RGB/HSL) + Add-to-List, below it the Saved Colors grid.
+    - Keyboard shortcuts: C/Space/N next, P/Left prev, Up/Down grid jump, R random,
+      H hide/show UI, F fullscreen, ? help. ESC closes overlays.
+    - Mandatory colors are pinned at the start and non-removable: Black, White, R, G, B.
+*/
 fun main() {
     var colors = js("['#000000', '#FFFFFF', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF', 'random']")
     

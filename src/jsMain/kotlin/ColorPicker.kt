@@ -7,6 +7,19 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
+/*
+    Custom Color Picker (RGB/HSL)
+
+    Kotlin/JS interop notes:
+    - Avoid Kotlin Regex and destructuring here; see normalizeHex() and custom ColorRGB/ColorHSL types.
+    - Use explicit loops and property assignments to dodge iterator/property mangling issues in some runtimes.
+    - All UI is pre-declared in index.html; this class wires behaviors and keeps RGB/HSL in sync.
+
+    Public API (used by Main.kt):
+    - setColor(hex): load external color into the picker (updates sliders and preview)
+    - getValue(): read current color as #RRGGBB
+    - updateStyles(uiColor): adapt borders/text for high-contrast on any background
+*/
 class ColorRGB(val r: Int, val g: Int, val b: Int)
 class ColorHSL(val h: Int, val s: Int, val l: Int)
 
@@ -149,12 +162,18 @@ class ColorPicker(val container: HTMLElement) {
 
     private fun toHex2(n: Int) = n.coerceIn(0, 255).toString(16).padStart(2, '0')
 
+    // Validate and normalize hex string to #RRGGBB (uppercase) without using Kotlin Regex
     private fun normalizeHex(v: String): String? {
         var s = v
-        if (s.startsWith("#").not()) s = "#$s"
+        if (!s.startsWith("#")) s = "#$s"
         if (s.length != 7) return null
-        val re = Regex("^#[0-9a-fA-F]{6}$")
-        return if (re.matches(s)) s.uppercase() else null
+        // Avoid Kotlin Regex to prevent JS mangling issues
+        for (i in 1..6) {
+            val ch = s[i]
+            val isHex = (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F')
+            if (!isHex) return null
+        }
+        return s.uppercase()
     }
 
     private fun hexToRgb(hex: String): ColorRGB {
@@ -164,6 +183,7 @@ class ColorPicker(val container: HTMLElement) {
         return ColorRGB(r, g, b)
     }
 
+    // Convert RGB (0..255) to HSL (0..360, 0..100, 0..100)
     private fun rgbToHsl(r: Int, g: Int, b: Int): ColorHSL {
         val rf = r / 255.0
         val gf = g / 255.0
@@ -190,6 +210,7 @@ class ColorPicker(val container: HTMLElement) {
         return ColorHSL((h * 360).toInt(), (s * 100).toInt(), (l * 100).toInt())
     }
 
+    // Convert HSL (0..360, 0..100, 0..100) back to RGB (0..255)
     private fun hslToRgb(h: Int, s: Int, l: Int): ColorRGB {
         val hf = h / 360.0
         val sf = s / 100.0
@@ -220,6 +241,7 @@ class ColorPicker(val container: HTMLElement) {
         return ColorRGB((r * 255).toInt(), (g * 255).toInt(), (b * 255).toInt())
     }
 
+    // Update live gradients on sliders to reflect current channel ranges
     private fun setSliderGradient() {
         val r = rSlider.value.toInt(); val g = gSlider.value.toInt(); val b = bSlider.value.toInt()
         rSlider.style.background = "linear-gradient(to right, rgb(0,$g,$b), rgb(255,$g,$b))"
@@ -232,12 +254,14 @@ class ColorPicker(val container: HTMLElement) {
         lSlider.style.background = "linear-gradient(to right, hsl($h, $s%, 0%), hsl($h, $s%, 50%), hsl($h, $s%, 100%))"
     }
 
+    // Load an external hex color into the picker (syncs both RGB and HSL controls)
     fun setColor(hex: String) {
         val norm = normalizeHex(hex) ?: return
         val rgb = hexToRgb(norm)
         setRGB(rgb.r, rgb.g, rgb.b, from = "external")
     }
 
+    // Primary sink when user edits RGB (either via sliders or number inputs)
     private fun setRGB(r: Int, g: Int, b: Int, from: String) {
         val rr = r.coerceIn(0, 255)
         val gg = g.coerceIn(0, 255)
@@ -260,6 +284,7 @@ class ColorPicker(val container: HTMLElement) {
         updateCommonUI(rr, gg, bb, from)
     }
 
+    // Primary sink when user edits HSL (either via sliders or number inputs)
     private fun setHSL(h: Int, s: Int, l: Int, from: String) {
         val hh = h.coerceIn(0, 360)
         val ss = s.coerceIn(0, 100)
@@ -300,6 +325,7 @@ class ColorPicker(val container: HTMLElement) {
         lNumber.value = l.toString()
     }
 
+    // Shared UI updates after any change (preview, gradients, contrast badges)
     private fun updateCommonUI(r: Int, g: Int, b: Int, from: String) {
         val hex = "#${toHex2(r)}${toHex2(g)}${toHex2(b)}"
         
@@ -320,6 +346,7 @@ class ColorPicker(val container: HTMLElement) {
         }
     }
 
+    // Compute WCAG contrast ratios against white and black backgrounds
     private fun updateContrastInfo(r: Int, g: Int, b: Int) {
         fun getLuminance(rv: Int, gv: Int, bv: Int): Double {
             fun adjust(c: Int): Double {
@@ -360,6 +387,7 @@ class ColorPicker(val container: HTMLElement) {
         el.className = if (status == "FAIL") "wcag-fail" else "wcag-pass"
     }
 
+    // Current color as #RRGGBB
     fun getValue(): String {
         val r = rSlider.value.toInt()
         val g = gSlider.value.toInt()
@@ -367,6 +395,7 @@ class ColorPicker(val container: HTMLElement) {
         return "#${toHex2(r)}${toHex2(g)}${toHex2(b)}"
     }
 
+    // Adapt borders/text colors for visibility against the current app background
     fun updateStyles(uiColor: String) {
         container.style.color = uiColor
         colorPreview.style.borderColor = uiColor
