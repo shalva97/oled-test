@@ -44,7 +44,7 @@ fun main() {
             val len = (jsParts.length as Int)
             for (i in 0 until len) {
                 val p = jsParts[i] as String
-                if (p.isNotBlank()) {
+                if (p.isNotBlank() && p != "random") {
                     // Check if already in mandatory list to avoid duplicates
                     var isMandatory = false
                     for (mc in mandatoryColors) {
@@ -59,17 +59,8 @@ fun main() {
                 }
             }
             
-            // Ensure "random" is in the list
-            var hasRandom = false
-            for (i in 0 until (resultList.length as Int)) {
-                if (resultList[i] == "random") {
-                    hasRandom = true
-                    break
-                }
-            }
-            if (!hasRandom) {
-                resultList.push("random")
-            }
+            // Always push "random" at the end
+            resultList.push("random")
 
             if ((resultList.length as Int) > 0) {
                 colors = resultList
@@ -380,7 +371,12 @@ fun main() {
                 if (isUiHidden) {
                     toggleUi()
                 } else {
-                    currentIndex = (currentIndex + 1) % len
+                    val currentColor = colors[currentIndex] as String
+                    if (currentColor == "random") {
+                        // Stay on random, just re-apply for a new color
+                    } else {
+                        currentIndex = (currentIndex + 1) % len
+                    }
                     applyColor()
                     persist()
                 }
@@ -408,7 +404,12 @@ fun main() {
                     "c", " ", "arrowright", "n" -> {
                         if (isUiHidden) {
                             val len = (colors.length as Int)
-                            currentIndex = (currentIndex + 1) % len
+                            val currentColor = colors[currentIndex] as String
+                            if (currentColor == "random") {
+                                // Stay on random
+                            } else {
+                                currentIndex = (currentIndex + 1) % len
+                            }
                             applyColor()
                             persist()
                         } else {
@@ -476,11 +477,11 @@ fun main() {
                 event.stopPropagation()
                 val newColor = colorPicker?.getValue()
                 if (newColor != null) {
-                    val colorsArr = colors as Array<String>
                     var exists = false
-                    val len = (colorsArr.asDynamic().length as Int)
+                    val len = (colors.length as Int)
                     for (i in 0 until len) {
-                        if (colorsArr[i].uppercase() == newColor.uppercase()) {
+                        val colorAt = colors[i] as String
+                        if (colorAt.uppercase() == newColor.uppercase()) {
                             exists = true
                             currentIndex = i
                             break
@@ -488,9 +489,24 @@ fun main() {
                     }
                     
                     if (!exists) {
-                        colors.push(newColor)
-                        val len = (colors.length as Int)
-                        currentIndex = len - 1
+                        // Insert before "random" which should be at the end
+                        var randomIdx = -1
+                        val currentLen = (colors.length as Int)
+                        for (i in 0 until currentLen) {
+                            if (colors[i] == "random") {
+                                randomIdx = i
+                                break
+                            }
+                        }
+                        
+                        if (randomIdx != -1) {
+                            colors.splice(randomIdx, 0, newColor)
+                            currentIndex = randomIdx
+                        } else {
+                            colors.push(newColor)
+                            currentIndex = (colors.length as Int) - 1
+                        }
+                        
                         renderColorList(currentIndex)
                         persist()
                     }
