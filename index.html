@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OLED Test App</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.4s ease;
+        }
+        .ui-hidden #fullscreen-hint,
+        .ui-hidden #fullscreen-btn,
+        .ui-hidden #color-selector-container,
+        .ui-hidden #active-color-info,
+        .ui-hidden #help-btn,
+        .ui-hidden #settings-btn {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+        }
+        #fullscreen-hint, #fullscreen-btn, #color-selector-container, #active-color-info, #help-btn, #settings-btn {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #active-color-info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.4);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-size: 14px;
+            pointer-events: auto;
+            z-index: 40;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            cursor: default;
+        }
+        #copy-info-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: inherit;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        #copy-info-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: currentColor;
+        }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 60;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s, background 0.2s;
+        }
+        body:hover .nav-btn {
+            opacity: 0.6;
+        }
+        .nav-btn:hover {
+            opacity: 1 !important;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        #prev-btn { left: 20px; }
+        #next-btn { right: 20px; }
+        .ui-hidden .nav-btn {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+        .ui-hidden #copy-info-btn {
+            display: none;
+        }
+        .nav-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor;
+        }
+        .active-color-label {
+            opacity: 0.7;
+            font-size: 10px;
+            margin-right: 5px;
+            text-transform: uppercase;
+        }
+        #fullscreen-hint {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.5);
+            padding: 10px;
+            border-radius: 5px;
+            pointer-events: none;
+        }
+        #fullscreen-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #fullscreen-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        .exit-icon {
+            display: none;
+        }
+        #fullscreen-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        #help-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+        #settings-btn {
+            position: absolute;
+            top: 70px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        #settings-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+        #help-overlay, #settings-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: default;
+        }
+        .help-content, .settings-content {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+        .help-content h2, .settings-content h2 {
+            margin-top: 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 15px;
+        }
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 15px 30px;
+            margin-top: 25px;
+        }
+        .key {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: bold;
+            text-align: center;
+            min-width: 30px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+        .help-close-btn, .settings-close-btn {
+            margin-top: 30px;
+            padding: 10px 30px;
+            background: white;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 16px;
+        }
+        .reset-btn {
+            margin-top: 20px;
+            padding: 12px;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-size: 16px;
+            transition: background 0.2s;
+        }
+        .reset-btn:hover {
+            background: #cc0000;
+        }
+        #color-selector-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            pointer-events: auto;
+            z-index: 50;
+        }
+        .color-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            max-width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .color-swatch {
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        .color-swatch .remove-btn {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 16px;
+            height: 16px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border: 1px solid white;
+            z-index: 10;
+        }
+        .color-swatch:hover .remove-btn {
+            opacity: 1;
+        }
+        .color-swatch .remove-btn:hover {
+            background: #cc0000;
+            transform: scale(1.1);
+        }
+        .color-swatch:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 50;
+        }
+        .color-swatch.selected {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255,255,255,0.6);
+            border: 2px solid white;
+            z-index: 40;
+        }
+        .color-swatch.selected::after {
+            content: '✓';
+            color: inherit;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+            pointer-events: none;
+        }
+        .color-swatch.swatch-random.selected::after {
+            display: none;
+        }
+        @keyframes swatch-pop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .swatch-new {
+            animation: swatch-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .swatch-random {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+            background-size: 200% 200%;
+            animation: random-gradient 5s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+        .swatch-random svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+        }
+        @keyframes random-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        #add-color-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 2px solid white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 100%;
+            margin-top: 10px;
+        }
+        #add-color-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(1.08);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        #add-color-btn:active {
+            transform: scale(0.95);
+        }
+        .group-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.5;
+            margin-bottom: -10px;
+            margin-top: 5px;
+            font-weight: bold;
+            color: inherit;
+        }
+        #custom-color-picker-container {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 24px;
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            min-width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .picker-row {
+            display: grid;
+            grid-template-columns: 20px 1fr 60px;
+            align-items: center;
+            gap: 12px;
+        }
+        .picker-number {
+            width: 100%;
+            height: 28px;
+            border-radius: 4px;
+            border: 1px solid currentColor;
+            background: rgba(0,0,0,0.2);
+            color: inherit;
+            text-align: center;
+            padding: 2px;
+            font-size: 13px;
+            outline: none;
+        }
+        .picker-number:focus {
+            background: rgba(255,255,255,0.1);
+        }
+        .picker-label {
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0.8;
+        }
+        .picker-slider {
+            flex: 1;
+            cursor: pointer;
+            height: 10px;
+            -webkit-appearance: none;
+            border-radius: 5px;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.2);
+            transition: opacity 0.2s;
+        }
+        .picker-slider:hover {
+            opacity: 0.9;
+        }
+        .picker-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 6px rgba(0,0,0,0.3);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        .picker-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 8px rgba(0,0,0,0.4);
+        }
+        #color-preview {
+            width: 100%;
+            height: 44px;
+            border-radius: 8px;
+            border: 2px solid white;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.2);
+            transition: background-color 0.15s ease;
+        }
+        #picker-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+        .picker-tab {
+            flex: 1;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: inherit;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .picker-tab.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+        #contrast-info {
+            font-size: 11px;
+            display: flex;
+            justify-content: space-around;
+            opacity: 0.9;
+            margin-top: -4px;
+            font-weight: bold;
+        }
+        .contrast-badge {
+            padding: 4px 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .wcag-pass { color: #4ade80; }
+        .wcag-fail { color: #f87171; }
+        #hex-label {
+            font-size: 14px;
+            font-family: monospace;
+            text-align: center;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="fullscreen-hint">Click or [C] to cycle. Press [?] for shortcuts.</div>
+    <div id="active-color-info">
+        <div><span class="active-color-label">HEX</span><span id="active-hex">#000000</span></div>
+        <div><span class="active-color-label">RGB</span><span id="active-rgb">0, 0, 0</span></div>
+        <button id="copy-info-btn">Copy</button>
+    </div>
+    <button id="prev-btn" class="nav-btn" title="Previous Color">
+        <svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+    </button>
+    <button id="next-btn" class="nav-btn" title="Next Color">
+        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </button>
+    <button id="fullscreen-btn" title="Toggle Fullscreen">
+        <svg class="enter-icon" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        <svg class="exit-icon" viewBox="0 0 24 24"><path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/></svg>
+    </button>
+    <button id="help-btn" title="Keyboard Shortcuts">?</button>
+    <button id="settings-btn" title="Settings">
+        <svg viewBox="0 0 24 24"><path d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.81,11.69,4.81,12c0,0.31,0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.5c-1.93,0-3.5-1.57-3.5-3.5 s1.57-3.5,3.5-3.5s3.5,1.57,3.5,3.5S13.93,15.5,12,15.5z"/></svg>
+    </button>
+    
+    <div id="help-overlay">
+        <div class="help-content">
+            <h2>Keyboard Shortcuts</h2>
+            <div class="shortcut-grid">
+                <div><span class="key">Space</span> or <span class="key">C</span> or <span class="key">N</span></div>
+                <div>Next Color</div>
+                
+                <div><span class="key">P</span> or <span class="key">Left</span> / <span class="key">Right</span></div>
+                <div>Prev / Next Color</div>
+
+                <div><span class="key">Up Arrow</span> / <span class="key">Down Arrow</span></div>
+                <div>Vertical Grid Navigation</div>
+                
+                <div><span class="key">F</span></div>
+                <div>Toggle Fullscreen</div>
+                
+                <div><span class="key">H</span></div>
+                <div>Toggle UI (Hide/Show)</div>
+                
+                <div><span class="key">R</span></div>
+                <div>Random Color</div>
+                
+                <div><span class="key">1-9</span></div>
+                <div>Select Color by Index</div>
+            </div>
+            <button class="help-close-btn">Got it!</button>
+        </div>
+    </div>
+
+    <div id="settings-overlay">
+        <div class="settings-content">
+            <h2>Settings</h2>
+            <div style="margin-top: 20px;">
+                <p>Manage your application preferences and saved data.</p>
+                <button id="reset-colors-btn" class="reset-btn">Reset All Colors</button>
+            </div>
+            <button class="settings-close-btn">Close</button>
+        </div>
+    </div>
+    <div id="color-selector-container">
+        <div id="custom-color-picker-container">
+            <div class="group-label">Create custom color</div>
+            <div id="picker-tabs"><button class="picker-tab active" id="tab-rgb">RGB</button><button class="picker-tab" id="tab-hsl">HSL</button></div>
+            <div id="rgb-controls"><div class="picker-row"><span class="picker-label">R</span><input type="range" class="picker-slider" id="r-slider" min="0" max="255" value="128"><input type="number" class="picker-number" id="r-number" min="0" max="255" value="128"></div><div class="picker-row"><span class="picker-label">G</span><input type="range" class="picker-slider" id="g-slider" min="0" max="255" value="128"><input type="number" class="picker-number" id="g-number" min="0" max="255" value="128"></div><div class="picker-row"><span class="picker-label">B</span><input type="range" class="picker-slider" id="b-slider" min="0" max="255" value="128"><input type="number" class="picker-number" id="b-number" min="0" max="255" value="128"></div></div>
+            <div id="hsl-controls" style="display: none;"><div class="picker-row"><span class="picker-label">H</span><input type="range" class="picker-slider" id="h-slider" min="0" max="360" value="0"><input type="number" class="picker-number" id="h-number" min="0" max="360" value="0"></div><div class="picker-row"><span class="picker-label">S</span><input type="range" class="picker-slider" id="s-slider" min="0" max="100" value="0"><input type="number" class="picker-number" id="s-number" min="0" max="100" value="0"></div><div class="picker-row"><span class="picker-label">L</span><input type="range" class="picker-slider" id="l-slider" min="0" max="100" value="50"><input type="number" class="picker-number" id="l-number" min="0" max="100" value="50"></div></div>
+            <div id="color-preview"></div>
+            <button id="add-color-btn">Add to List</button><div class="group-label">Contrast</div><div id="contrast-info"><div class="contrast-badge"><span>White:</span><span id="contrast-white">1.0:1</span><span id="wcag-white">FAIL</span></div><div class="contrast-badge"><span>Black:</span><span id="contrast-black">1.0:1</span><span id="wcag-black">FAIL</span></div></div><div class="group-label">Saved Colors</div><div class="color-list" id="color-list"></div></div></div>
+    <!-- Vite handles the module loading -->
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
