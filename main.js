@@ -85,6 +85,8 @@ window.onload = () => {
     const settingsOverlay = document.getElementById("settings-overlay");
     const settingsCloseBtn = settingsOverlay?.querySelector(".settings-close-btn");
     const resetColorsBtn = document.getElementById("reset-colors-btn");
+    const burgerBtn = document.getElementById("burger-btn");
+    const burgerDropdown = document.getElementById("burger-dropdown");
 
     const colorPicker = customColorPickerContainer ? new ColorPicker(customColorPickerContainer) : null;
 
@@ -94,10 +96,36 @@ window.onload = () => {
         isUiHidden = !isUiHidden;
         if (isUiHidden) {
             body.classList.add("ui-hidden");
+            closeBurger();
         } else {
             body.classList.remove("ui-hidden");
         }
     }
+
+    function closeBurger() {
+        burgerDropdown?.classList.remove("active");
+        burgerBtn?.classList.remove("active");
+    }
+
+    // Burger menu toggle
+    burgerBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isActive = burgerDropdown?.classList.toggle("active");
+        burgerBtn?.classList.toggle("active", isActive);
+    });
+
+    // Close burger menu when clicking anywhere else
+    document.addEventListener("click", (e) => {
+        if (burgerDropdown?.classList.contains("active")) {
+            if (!burgerDropdown.contains(e.target) && e.target !== burgerBtn) {
+                closeBurger();
+            }
+        }
+    });
+
+    // Close burger menu when selecting an item
+    helpBtn?.addEventListener("click", closeBurger);
+    settingsBtn?.addEventListener("click", closeBurger);
 
     function updateFullscreenIcons() {
         const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
@@ -228,26 +256,59 @@ window.onload = () => {
             const rgb = activeRgbDisplay?.textContent || "";
             const textToCopy = `Hex: ${hex}, RGB: (${rgb})`;
             window.navigator.clipboard.writeText(textToCopy).then(() => {
-                const oldText = copyInfoBtn.textContent;
-                copyInfoBtn.textContent = "Copied!";
-                window.setTimeout(() => { copyInfoBtn.textContent = oldText; }, 1500);
+                activeColorInfo?.classList.add("copied");
+                window.setTimeout(() => { activeColorInfo?.classList.remove("copied"); }, 2000);
             });
         };
+    }
+
+    // Touch gestures for navigation
+    let touchStartX = 0;
+    let touchStartY = 0;
+    body.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    body.addEventListener("touchend", (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
+        const dx = touchEndX - touchStartX;
+        const dy = touchEndY - touchStartY;
+
+        // If swipe is mostly horizontal and long enough
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
+            if (dx > 0) {
+                prevColor();
+            } else {
+                nextColor();
+            }
+        }
+    }, { passive: true });
+
+    function prevColor() {
+        currentIndex = (currentIndex - 1 + colors.length) % colors.length;
+        applyColor();
+        persist();
+    }
+
+    function nextColor() {
+        currentIndex = (currentIndex + 1) % colors.length;
+        applyColor();
+        persist();
     }
 
     if (prevBtn) {
         prevBtn.onclick = (event) => {
             event.stopPropagation();
-            currentIndex = (currentIndex - 1 + colors.length) % colors.length;
-            applyColor();
-            if (hint) hint.style.display = "none";
+            prevColor();
         };
     }
 
     if (nextBtn) {
         nextBtn.onclick = (event) => {
             event.stopPropagation();
-            body.click();
+            nextColor();
         };
     }
 
@@ -309,16 +370,22 @@ window.onload = () => {
         };
     }
 
-    body.addEventListener("click", () => {
+    body.addEventListener("click", (e) => {
+        const isFullscreen = !!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+        const isMobile = window.innerWidth <= 600;
+
         if (isUiHidden) {
-            toggleUi();
-        } else {
-            const currentColor = colors[currentIndex];
-            if (currentColor !== "random") {
-                currentIndex = (currentIndex + 1) % colors.length;
+            if (isMobile && isFullscreen) {
+                if (e.clientX < window.innerWidth / 2) {
+                    prevColor();
+                } else {
+                    nextColor();
+                }
+            } else {
+                toggleUi();
             }
-            applyColor();
-            persist();
+        } else {
+            nextColor();
         }
         if (hint) hint.style.display = "none";
     });
@@ -337,20 +404,13 @@ window.onload = () => {
             case "?": if (!isUiHidden) helpBtn?.click(); break;
             case "c": case " ": case "arrowright": case "n":
                 if (isUiHidden) {
-                    const currentColor = colors[currentIndex];
-                    if (currentColor !== "random") {
-                        currentIndex = (currentIndex + 1) % colors.length;
-                    }
-                    applyColor();
-                    persist();
+                    nextColor();
                 } else {
                     body.click();
                 }
                 break;
             case "arrowleft": case "p":
-                currentIndex = (currentIndex - 1 + colors.length) % colors.length;
-                applyColor();
-                persist();
+                prevColor();
                 if (hint) hint.style.display = "none";
                 break;
             case "arrowup":
@@ -425,6 +485,9 @@ window.onload = () => {
                 const docEl = document.documentElement;
                 const requestFullscreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
                 requestFullscreen?.call(docEl);
+                if (!isUiHidden) {
+                    toggleUi();
+                }
             }
         };
     }
